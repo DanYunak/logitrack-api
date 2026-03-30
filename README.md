@@ -1,4 +1,9 @@
+[![LogiTrack CI/CD Pipeline](https://github.com/DanYunak/logitrack-api/actions/workflows/deploy.yml/badge.svg)](https://github.com/DanYunak/logitrack-api/actions/workflows/deploy.yml)
+
 # LogiTrack API MVP — Логістична платформа для доставок
+
+## Production URL
+https://logitrack-api-dh0i.onrender.com
 
 ## Про проєкт
 Це бекенд-додаток, призначений для управління логістичними процесами, який об'єднує диспетчерів, кур'єрів та клієнтів.
