@@ -8,7 +8,7 @@
 ## Стек технологій
 - **Backend:** TypeScript, NestJS
 - **База даних:** PostgreSQL, TypeORM
-- **Менеджер пакетів:** pnpm
+- **Менеджер пакетів:** yarn
 - **Версіонування:** Git / GitHub
 
 ## Структура папок
