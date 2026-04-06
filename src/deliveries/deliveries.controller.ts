@@ -1,4 +1,4 @@
-import { Controller, Delete, Get, Param } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, Post } from '@nestjs/common';
 import { DeliveriesService } from './deliveries.service';
 
 @Controller('deliveries')
@@ -9,6 +9,12 @@ export class DeliveriesController {
   // create(@Body() createDeliveryDto: CreateDeliveryDto) {
   //   return this.deliveriesService.create(createDeliveryDto);
   // }
+
+  @Post('calculate')
+  async calculateCost(@Body() body: { distance: number; weight: number }) {
+    const cost = await this.deliveriesService.calculateDeliveryCost(body.distance, body.weight);
+    return { cost };
+  }
 
   @Get()
   findAll() {
