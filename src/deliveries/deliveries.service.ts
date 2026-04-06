@@ -1,26 +1,22 @@
 import { Injectable, BadRequestException } from '@nestjs/common';
-// import { CreateDeliveryDto } from './dto/create-delivery.dto';
-// import { UpdateDeliveryDto } from './dto/update-delivery.dto';
+import { AnalyticsService } from '../analytics/analytics.service';
 
 @Injectable()
 export class DeliveriesService {
-  // create(createDeliveryDto: CreateDeliveryDto) {
-  //   return 'This action adds a new delivery';
-  // }
+  constructor(private readonly analyticsService: AnalyticsService) {}
 
   findAll() {
+    this.analyticsService.captureEvent('deliveries_list_viewed', 'anonymous_user');
     return `This action returns all deliveries`;
   }
 
   findOne(id: number) {
+    this.analyticsService.captureEvent('delivery_details_viewed', 'anonymous_user', { deliveryId: id });
     return `This action returns a #${id} delivery`;
   }
 
-  // update(id: number, updateDeliveryDto: UpdateDeliveryDto) {
-  //   return `This action updates a #${id} delivery`;
-  // }
-
   remove(id: number) {
+    this.analyticsService.captureEvent('delivery_deleted', 'anonymous_user', { deliveryId: id });
     return `This action removes a #${id} delivery`;
   }
 
@@ -31,6 +27,12 @@ export class DeliveriesService {
     let totalCost = 50 + (distance * 10);
 
     if (weight > 5) totalCost += (weight - 5) * 5;
+
+    this.analyticsService.captureEvent('delivery_calculated', 'anonymous_user', {
+      distance,
+      weight,
+      totalCost,
+    });
 
     return totalCost;
   }

@@ -1,26 +1,22 @@
 import { Injectable } from '@nestjs/common';
-// import { CreateUserDto } from './dto/create-user.dto';
-// import { UpdateUserDto } from './dto/update-user.dto';
+import { AnalyticsService } from '../analytics/analytics.service';
 
 @Injectable()
 export class UsersService {
-  // create(createUserDto: CreateUserDto) {
-  //   return 'This action adds a new user';
-  // }
+  constructor(private readonly analyticsService: AnalyticsService) {}
 
   findAll() {
+    this.analyticsService.captureEvent('users_list_viewed', 'anonymous_user');
     return `This action returns all users`;
   }
 
   findOne(id: number) {
+    this.analyticsService.captureEvent('user_details_viewed', 'anonymous_user', { userId: id });
     return `This action returns a #${id} user`;
   }
 
-  // update(id: number, updateUserDto: UpdateUserDto) {
-  //   return `This action updates a #${id} user`;
-  // }
-
   remove(id: number) {
+    this.analyticsService.captureEvent('user_deleted', 'anonymous_user', { userId: id });
     return `This action removes a #${id} user`;
   }
 }
