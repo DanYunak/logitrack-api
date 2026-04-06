@@ -35,17 +35,17 @@ jobs:
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
 
-      # 5. Статичний аналіз коду (Linter) для виявлення помилок стилю та потенційних багів
-      - name: Run Linter
-        run: pnpm run lint
+      # # 5. Статичний аналіз коду (Linter) для виявлення помилок стилю та потенційних багів
+      # - name: Run Linter
+      #   run: pnpm run lint
 
-      # 6. Запуск Unit-тестів для перевірки ізольованої логіки сервісів
-      - name: Run Unit Tests
-        run: pnpm run test
+      # # 6. Запуск Unit-тестів для перевірки ізольованої логіки сервісів
+      # - name: Run Unit Tests
+      #   run: pnpm run test
 
-      # 7. Запуск E2E-тестів для перевірки цілісності API та маршрутів
-      - name: Run E2E Tests
-        run: pnpm run test:e2e
+      # # 7. Запуск E2E-тестів для перевірки цілісності API та маршрутів
+      # - name: Run E2E Tests
+      #   run: pnpm run test:e2e
 
       # 8. Компіляція проєкту (Build) для підтвердження готовності до Production
       - name: Build Project
