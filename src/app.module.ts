@@ -1,20 +1,27 @@
 import { Module } from '@nestjs/common';
-import { AppController } from './app.controller';
-import { UsersModule } from './users/users.module';
-import { OrdersModule } from './orders/orders.module';
-import { DeliveriesModule } from './deliveries/deliveries.module';
+import { APP_FILTER } from '@nestjs/core';
+import { SentryModule, SentryGlobalFilter } from '@sentry/nestjs/setup';
 import { ConfigModule } from '@nestjs/config';
+
+import { DeliveriesModule } from './deliveries/deliveries.module';
+import { OrdersModule } from './orders/orders.module';
+import { UsersModule } from './users/users.module';
 import { AnalyticsModule } from './analytics/analytics.module';
 
 @Module({
   imports: [
     ConfigModule.forRoot({ isGlobal: true }),
-    AnalyticsModule,
-    UsersModule,
+    SentryModule.forRoot(),
+    DeliveriesModule,
     OrdersModule,
-    DeliveriesModule
+    UsersModule,
+    AnalyticsModule,
   ],
-  controllers: [AppController],
-  providers: [],
+  providers: [
+    {
+      provide: APP_FILTER,
+      useClass: SentryGlobalFilter,
+    },
+  ],
 })
-export class AppModule { }
+export class AppModule {}
