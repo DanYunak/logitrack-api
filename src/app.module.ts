@@ -7,6 +7,7 @@ import { DeliveriesModule } from './deliveries/deliveries.module';
 import { OrdersModule } from './orders/orders.module';
 import { UsersModule } from './users/users.module';
 import { AnalyticsModule } from './analytics/analytics.module';
+import { AppController } from './app.controller';
 
 @Module({
   imports: [
@@ -17,6 +18,7 @@ import { AnalyticsModule } from './analytics/analytics.module';
     UsersModule,
     AnalyticsModule,
   ],
+  controllers: [AppController],
   providers: [
     {
       provide: APP_FILTER,
